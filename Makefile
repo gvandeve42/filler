@@ -27,7 +27,7 @@ $(NAME):
 	$(COMP) $(FLAGS) -o $(NAME) $(OBJS)
 
 clean:
-	rm -f %(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
