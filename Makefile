@@ -15,19 +15,21 @@ DIRSRC		=	./srcs
 DIROBJ		=	./objs
 INCLUDE		=	./includes
 SRC			=	$(DIRSRC)/*.c
-OBJ			=	$(SRC:.c=.o)
-OBJS		=	$(OBJ:%=$(DIROBJ)%)
+OBJ			=	*.o
+LIB			=	libftprintf/libftprintf.a
 CFLAGS		=	-Wall -Wextra -Werror
 CC			=	gcc
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) -c $(FLAGS) $(SRC) -I $(INCLUDE) -o $(DIROBJ)
-	$(COMP) $(FLAGS) -o $(NAME) $(OBJS)
+	make -C libftprintf re
+	$(CC) -c $(FLAGS) $(SRC) -I $(INCLUDE)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIB)
+	make -C libftprintf fclean
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
