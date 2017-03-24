@@ -37,4 +37,5 @@ fclean: clean
 re: fclean all
 
 test: re
-	../resources/filler_vm -f ../resources/maps/map00 -p1 gvandeve.filler -p2 gvandeve.filler
+	cp gvandeve.filler ../resources/players
+	../resources/filler_vm -f ../resources/maps/map00 -p1 ../resources/players/gvandeve.filler -p2 ../resources/players/abanlin.filler

@@ -17,6 +17,16 @@
 #include "ft_printf.h"
 #include "get_next_line.h"
 
-int		main(void);
+typedef struct	s_player
+{
+	int		nb;
+	char	symb[3];
+	int		vpiece[2];
+	char	**piece;
+}				t_player;
+
+int			main(void);
+void		scrap_start(t_player *player, char *line);
+t_player	*init_player();
 
 #endif
