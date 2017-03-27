@@ -19,6 +19,8 @@ void	free_player(t_player *player)
 	i = 0;
 	while (i < player->iplateau[0])
 		free(player->plateau[i++]);
+	free(player->piece);
+	free(player->plateau);
 	free(player);
 }
 

@@ -14,12 +14,12 @@ int		main(void)
 			if (ft_strncmp(line, "Plateau", 7) == 0)
 				{
 					scrap_tab(player->iplateau, &player->plateau, line);
-					//print_tab(player->plateau, player->iplateau[0]);
+					print_tab(player->plateau, player->iplateau[0]);
 				}
 			if (ft_strncmp(line, "Piece", 5) == 0)
 				{
-					//scrap_tab(player->ipiece, &player->piece, line);
-					//print_tab(player->piece, player->ipiece[0]);
+					scrap_tab(player->ipiece, &player->piece, line);
+					print_tab(player->piece, player->ipiece[0]);
 				}
 			free(line);
 		}

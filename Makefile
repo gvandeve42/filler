@@ -30,7 +30,7 @@ $(NAME):
 
 clean:
 	rm -rf $(OBJ)
-	rm -f trace.filler
+	rm -f filler.trace
 
 fclean: clean
 	rm -f $(NAME)

@@ -40,29 +40,30 @@ static void	scrap_info_tab(int *tab, char *line)
 
 void	scrap_tab(int *tab_info, char ***tab, char *line)
 {
-	int		i;
-	int		j;
+	int		i[2];
 	char	**tmp;
 	char	*tmp_line;
 
-	i = 0;
-	j = 0;
+	i[0] = 0;
+	i[1] = 0;
 	tmp_line = line;
 	scrap_info_tab(tab_info, tmp_line);
+	ft_printf("TAB = %d %d\n", tab_info[0], tab_info[1]);
 	*tab = (char**)ft_memalloc(tab_info[0] * sizeof(char*));
 	tmp = *tab;
-	get_next_line(0, &tmp_line);
-	(*tmp_line == ' ') ? get_next_line(0, &tmp_line) : (void)tmp_line;
-	while (i < tab_info[0])
+	while (i[0] < tab_info[0] && (get_next_line(0, &tmp_line) == 1))
 		{
-			get_next_line(0, &tmp_line);
-			while (tmp_line[j] != '.' &&
-				   tmp_line[j] != 'O' &&
-				   tmp_line[j] != 'X' &&
-				   tmp_line[j] != '*' &&
-				   tmp_line[j] != '\0')
-				j++;
-			tmp[i] = (char*)ft_memalloc((tab_info[1] + 1) * sizeof(char));
-			ft_strncpy(tmp[i++], &tmp_line[j], tab_info[1]);
+			if (*tmp_line != 'P' && *tmp_line != ' ')
+				{
+					while (tmp_line[i[1]] != '.' &&
+						   tmp_line[i[1]] != 'O' &&
+						   tmp_line[i[1]] != 'X' &&
+						   tmp_line[i[1]] != '*' &&
+						   tmp_line[i[1]] != '\0')
+						i[1]++;
+					tmp[i[0]] = (char*)ft_memalloc((tab_info[1] + 1) * sizeof(char));
+					ft_strncpy(tmp[i[0]++], &tmp_line[i[1]], tab_info[1]);
+				}
+			free(tmp_line);
 		}
 }
