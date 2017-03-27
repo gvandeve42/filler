@@ -25,11 +25,12 @@ all: $(NAME)
 $(NAME):
 	make -C libftprintf re
 	$(CC) -c $(FLAGS) $(SRC) -I $(INCLUDE)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIB)
+	$(CC) -g $(FLAGS) -o $(NAME) $(OBJ) $(LIB)
 	make -C libftprintf fclean
 
 clean:
 	rm -rf $(OBJ)
+	rm -f trace.filler
 
 fclean: clean
 	rm -f $(NAME)

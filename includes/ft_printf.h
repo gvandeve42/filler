@@ -20,6 +20,7 @@
 # include <stdint.h>
 # include <wchar.h>
 
+# define FD 2
 # define BUFF_SIZE 1000
 # define TRUE 1
 # define FALSE 0

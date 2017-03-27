@@ -6,15 +6,23 @@ int		main(void)
 	t_player	*player;
 
 	player = init_player();
-	while (get_next_line(0, &line))
+	while (get_next_line(0, &line) == 1)
 		{
-			ft_putstr_fd("[read_vm] :", 2);
-			ft_putstr_fd(line, 2);
-			ft_putstr_fd("\n", 2);
-			if (ft_strncmp(line, "$$$", 3))
-				scrap_start(player, line);
-			ft_printf("STRUCT: nb=[%d] symb=[%s]\n", player->nb, player->symb);
+			ft_printf("||%s||\n", line);
+			if (ft_strncmp(line, "$$$", 3) == 0)
+					scrap_start(player, line);
+			if (ft_strncmp(line, "Plateau", 7) == 0)
+				{
+					scrap_tab(player->iplateau, &player->plateau, line);
+					//print_tab(player->plateau, player->iplateau[0]);
+				}
+			if (ft_strncmp(line, "Piece", 5) == 0)
+				{
+					//scrap_tab(player->ipiece, &player->piece, line);
+					//print_tab(player->piece, player->ipiece[0]);
+				}
+			free(line);
 		}
-	free(player);
+	free_player(player);
 	return (0);
 }

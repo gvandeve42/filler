@@ -21,12 +21,18 @@ typedef struct	s_player
 {
 	int		nb;
 	char	symb[3];
-	int		vpiece[2];
+	int		ipiece[2];
+	int		iplateau[2];
 	char	**piece;
+	char	**plateau;
 }				t_player;
 
 int			main(void);
-void		scrap_start(t_player *player, char *line);
 t_player	*init_player();
+void		free_player(t_player *player);
+void		scrap_start(t_player *player, char *line);
+void		scrap_tab(int *tab_info, char ***tab, char *line);
+void		print_tab(char **tab, int length);
+void		push_next_line(char *line);
 
 #endif
