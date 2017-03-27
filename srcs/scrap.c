@@ -9,7 +9,7 @@ void	scrap_start(t_player *player, char *line)
 		{
 			if (*tmp++ == 'p')
 				{
-					player->nb = ft_atoi(line);
+					player->nb = ft_atoi(tmp);
 					player->symb[0] = (player->nb == 1) ? 'O' : 'X' ;
 					player->symb[1] = (player->nb == 1) ? 'o' : 'x' ;
 					return ;
@@ -48,7 +48,6 @@ void	scrap_tab(int *tab_info, char ***tab, char *line)
 	i[1] = 0;
 	tmp_line = line;
 	scrap_info_tab(tab_info, tmp_line);
-	ft_printf("TAB = %d %d\n", tab_info[0], tab_info[1]);
 	*tab = (char**)ft_memalloc(tab_info[0] * sizeof(char*));
 	tmp = *tab;
 	while (i[0] < tab_info[0] && (get_next_line(0, &tmp_line) == 1))

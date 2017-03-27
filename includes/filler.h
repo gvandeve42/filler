@@ -25,6 +25,7 @@ typedef struct	s_player
 	int		iplateau[2];
 	char	**piece;
 	char	**plateau;
+	char	*rsp;
 }				t_player;
 
 int			main(void);
