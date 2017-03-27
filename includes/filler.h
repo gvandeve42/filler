@@ -25,8 +25,13 @@ typedef struct	s_player
 	int		iplateau[2];
 	char	**piece;
 	char	**plateau;
-	char	*rsp;
 }				t_player;
+
+typedef struct	s_pos
+{
+	int				pos[2];
+	struct s_pos	*next;
+}				t_pos;
 
 int			main(void);
 t_player	*init_player();

@@ -6,9 +6,8 @@ int		main(void)
 	t_player	*player;
 
 	player = init_player();
-	while (get_next_line(0, &line) == 1)
+	while (get_next_line(0, &line))
 		{
-			ft_printf("[read  p%d %s] :%s\n", player->nb, player->symb, line);
 			if (ft_strncmp(line, "$$$", 3) == 0)
 				scrap_start(player, line);
 			if (ft_strncmp(line, "Plateau", 7) == 0)
@@ -17,9 +16,14 @@ int		main(void)
 				{
 					scrap_tab(player->ipiece, &player->piece, line);
 					//calc_player_response(player);
-					ft_putstr("0 0\n");
+					(player->nb == 1) ? ft_putstr("8 2\n") : ft_putstr("11 14\n");
 				}
-			free(line);
+			if (ft_strncmp(line, "==", 2 == 0))
+				{
+					free(line);
+					break ;
+				}
+				free(line);
 		}
 	free_player(player);
 	return (0);
