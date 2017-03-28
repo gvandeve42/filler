@@ -15,8 +15,8 @@ int		main(void)
 			if (ft_strncmp(line, "Piece", 5) == 0)
 				{
 					scrap_tab(player->ipiece, &player->piece, line);
-					//calc_player_response(player);
-					(player->nb == 1) ? ft_putstr("8 2\n") : ft_putstr("11 14\n");
+					calc_player_response(player);
+					printf("8 2\n");
 				}
 			if (ft_strncmp(line, "==", 2 == 0))
 				{

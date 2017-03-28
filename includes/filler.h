@@ -21,10 +21,12 @@ typedef struct	s_player
 {
 	int		nb;
 	char	symb[3];
+	char	esymb[3];
 	int		ipiece[2];
 	int		iplateau[2];
 	char	**piece;
 	char	**plateau;
+	int		rsp[2];
 }				t_player;
 
 typedef struct	s_pos
@@ -40,5 +42,11 @@ void		scrap_start(t_player *player, char *line);
 void		scrap_tab(int *tab_info, char ***tab, char *line);
 void		print_tab(char **tab, int length);
 void		push_next_line(char *line);
+t_pos		*create_item();
+t_pos		*add_elem(int x, int y, t_pos *lst);
+t_pos		*fill_pos_player(t_player *ply, int x, int y, t_pos *lst);
+t_pos		*fill_pos_eplayer(t_player *ply, int x, int y, t_pos *lst);
+t_pos		*fill_pos_pic(t_player *ply, int x, int y, t_pos *lst);
+void		calc_player_response(t_player *player);
 
 #endif

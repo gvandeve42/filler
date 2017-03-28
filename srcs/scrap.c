@@ -12,6 +12,8 @@ void	scrap_start(t_player *player, char *line)
 					player->nb = ft_atoi(tmp);
 					player->symb[0] = (player->nb == 1) ? 'O' : 'X' ;
 					player->symb[1] = (player->nb == 1) ? 'o' : 'x' ;
+					player->esymb[0] = (player->nb == 1) ? 'X' : 'O' ;
+					player->esymb[1] = (player->nb == 1) ? 'x' : 'o' ;
 					return ;
 				}
 		}

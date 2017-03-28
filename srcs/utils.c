@@ -23,9 +23,3 @@ void	free_player(t_player *player)
 	free(player->plateau);
 	free(player);
 }
-
-void	push_next_line(char *line)
-{
-	get_next_line(0, &line);
-	free(line);
-}
