@@ -6,7 +6,7 @@
 /*   By: gvandeve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:12:04 by gvandeve          #+#    #+#             */
-/*   Updated: 2017/03/29 18:13:06 by gvandeve         ###   ########.fr       */
+/*   Updated: 2017/03/30 19:25:31 by gvandeve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int		is_avaible(t_player *ply, int *coor, t_pos *piece, int *add)
 			t_1 = coor[0] + piece->pos[0] - add[0];
 			t_2 = coor[1] + piece->pos[1] - add[1];
 			if (t_1 < ply->iplateau[0] &&
-				t_1 > 0 &&
+				t_1 >= 0 &&
 				t_2 < ply->iplateau[1] &&
-				t_2 > 0)
+				t_2 >= 0)
 				{
 					if (ply->plateau[t_1][t_2] == '.' ||
 						 ply->plateau[t_1][t_2] == 'a')
@@ -117,7 +117,7 @@ static int		analyse_plc(t_player *ply, t_pos *piece)
 					free(coor);
 					return (1);
 				}
-			if (coor[1] + 1 < ply->iplateau[1])
+			if (coor[1] + 1 < (ply->iplateau[1]))
 				coor[1]++;
 			else
 				{

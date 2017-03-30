@@ -6,7 +6,7 @@
 /*   By: gvandeve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:15:05 by gvandeve          #+#    #+#             */
-/*   Updated: 2017/03/29 13:15:08 by gvandeve         ###   ########.fr       */
+/*   Updated: 2017/03/30 19:05:29 by gvandeve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	print_tab(char **tab, int length)
 
 	i = 0;
 	while (i < length)
-		ft_printf("|||||%5d %s|||||\n", i - 1, tab[i++]);
+	{
+		ft_printf("|||||%5d %s|||||\n", i, tab[i]);
+		i++;
+	}
 }
 
 void	free_player(t_player *player)
