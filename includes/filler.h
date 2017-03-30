@@ -27,6 +27,7 @@ typedef struct	s_player
 	char	**piece;
 	char	**plateau;
 	int		rsp[2];
+	int		nb_prt;
 }				t_player;
 
 typedef struct	s_pos

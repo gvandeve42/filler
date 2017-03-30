@@ -18,7 +18,7 @@ void	print_tab(char **tab, int length)
 
 	i = 0;
 	while (i < length)
-		ft_printf("|||||%s|||||\n", tab[i++]);
+		ft_printf("|||||%5d %s|||||\n", i - 1, tab[i++]);
 }
 
 void	free_player(t_player *player)
