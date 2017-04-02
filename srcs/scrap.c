@@ -14,14 +14,14 @@
 
 void		scrap_start(t_player *player, char *line)
 {
-	char	*tmp;
+	int		i;
 
-	tmp = line;
-	while (*tmp != '\0')
+	i = 0;
+	while (line[i] != '\0')
 	{
-		if (*tmp++ == 'p')
+		if (line[i++] == 'p')
 		{
-			player->nb = ft_atoi(tmp);
+			player->nb = ft_atoi(&line[i]);
 			player->symb[0] = (player->nb == 1) ? 'O' : 'X';
 			player->symb[1] = (player->nb == 1) ? 'o' : 'x';
 			player->esymb[0] = (player->nb == 1) ? 'X' : 'O';
@@ -29,6 +29,32 @@ void		scrap_start(t_player *player, char *line)
 			return ;
 		}
 	}
+}
+
+void		scrap_start_v(t_player *player, char *line)
+{
+	int		i;
+	int		anchor;
+
+	i = 0;
+	anchor = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i++] == 'p')
+		{
+			anchor = i;
+			player->nb = ft_atoi(&line[i]);
+			player->symb[0] = (player->nb == 1) ? 'O' : 'X';
+			player->symb[1] = (player->nb == 1) ? 'o' : 'x';
+			player->esymb[0] = (player->nb == 1) ? 'X' : 'O';
+			player->esymb[1] = (player->nb == 1) ? 'x' : 'o';
+		}
+		if (line[i] == '[' && line[anchor] == '1')
+			player->name_1 = ft_strdup(&line[i]);
+		if (line[i] == '[' && line[anchor] == '2')
+			player->name_2 = ft_strdup(&line[i]);
+	}
+	return ;
 }
 
 static void	scrap_info_tab(int *tab, char *line)

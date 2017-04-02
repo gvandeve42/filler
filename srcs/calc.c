@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-static int		is_avaible(t_player *ply, int *coor, t_pos *piece, int *add)
+int		is_avaible(t_player *ply, int *coor, t_pos *piece, int *add)
 {
 	int	t_1;
 	int	t_2;
@@ -24,10 +24,8 @@ static int		is_avaible(t_player *ply, int *coor, t_pos *piece, int *add)
 		{
 			t_1 = coor[0] + piece->pos[0] - add[0];
 			t_2 = coor[1] + piece->pos[1] - add[1];
-			if (t_1 < ply->iplateau[0] &&
-				t_1 >= 0 &&
-				t_2 < ply->iplateau[1] &&
-				t_2 >= 0)
+			if (t_1 < ply->iplateau[0] && t_1 >= 0 &&
+				t_2 < ply->iplateau[1] && t_2 >= 0)
 				{
 					if (ply->plateau[t_1][t_2] == '.' ||
 						 ply->plateau[t_1][t_2] == 'a')
@@ -51,11 +49,9 @@ static int		is_avaible(t_player *ply, int *coor, t_pos *piece, int *add)
 
 static int		get_next_coor(t_player *ply, int **coor)
 {
-	t_bool		start;
 	int			i;
 	int			j;
 
-	start = TRUE;
 	i = (*coor)[0];
 	j = (*coor)[1];
 	while (i < ply->iplateau[0])
@@ -76,33 +72,6 @@ static int		get_next_coor(t_player *ply, int **coor)
 	return (0);
 }
 
-static int		test_all(t_player *ply, int *coor, t_pos *piece)
-{
-	int	*i;
-
-	i = (int*)ft_memalloc(2 * sizeof(int));
-	i[0] = 0;
-	i[1] = 0;
-	while (i[0] < ply->ipiece[0])
-		{
-			while (i[1] < ply->ipiece[1])
-				{
-					if (is_avaible(ply, coor, piece, i))
-						{
-							ply->rsp[0] = (coor[0] - i[0]);
-							ply->rsp[1] = (coor[1] - i[1]);
-							free (i);
-							return (1);
-						}
-					i[1]++;
-				}
-			i[1] = 0;
-			i[0]++;
-		}
-	free (i);
-	return (0);
-}
-
 static int		analyse_plc(t_player *ply, t_pos *piece)
 {
 	int	*coor;
@@ -112,7 +81,7 @@ static int		analyse_plc(t_player *ply, t_pos *piece)
 	coor[1] = 0;
 	while (get_next_coor(ply, &coor))
 		{
-			if (test_all(ply, coor, piece))
+			if (test_all_dr(ply, coor, piece))
 				{
 					free(coor);
 					return (1);

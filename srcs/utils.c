@@ -19,21 +19,33 @@ void	print_tab(char **tab, int length)
 	i = 0;
 	while (i < length)
 	{
-		ft_printf("|||||%5d %s|||||\n", i, tab[i]);
+		ft_printf("[%3d] %s\n", i, tab[i]);
 		i++;
 	}
 }
 
-void	free_player(t_player *player)
+void	free_tab(char **tab, int len)
 {
 	int		i;
 
 	i = 0;
-	while (i < player->ipiece[0])
-		free(player->piece[i++]);
-	i = 0;
-	while (i < player->iplateau[0])
-		free(player->plateau[i++]);
+	while (i < len)
+		free(tab[i++]);
+}
+
+void	free_player_v(t_player *player)
+{
+	free(player->name_1);
+	free(player->name_2);
+	free(player);
+}
+
+void	free_player(t_player *player)
+{
+	free_tab(player->plateau, player->iplateau[0]);
+	free_tab(player->piece, player->ipiece[0]);
+	free(player->name_1);
+	free(player->name_2);
 	free(player->piece);
 	free(player->plateau);
 	free(player);
