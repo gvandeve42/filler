@@ -17,7 +17,10 @@
 #include "ft_printf.h"
 #include "get_next_line.h"
 
-typedef struct	s_player
+typedef struct s_player	t_player;
+typedef struct s_pos	t_pos;
+
+struct	s_player
 {
 	int		nb;
 	char	symb[3];
@@ -30,13 +33,15 @@ typedef struct	s_player
 	char	**plateau;
 	int		rsp[2];
 	int		nb_prt;
-}				t_player;
+	int		(*g_strat)(t_player *ply, int **coor);
+	int		(*p_strat)(t_player *ply, int *coor, t_pos *piece);
+};
 
-typedef struct	s_pos
+struct	s_pos
 {
 	int				pos[2];
 	struct s_pos	*next;
-}				t_pos;
+};
 
 int			main(void);
 void		free_tab(char **tab, int len);
@@ -64,6 +69,15 @@ int			test_all_ul(t_player *ply, int *coor, t_pos *piece);
 int			test_all_ur(t_player *ply, int *coor, t_pos *piece);
 int			test_all_dl(t_player *ply, int *coor, t_pos *piece);
 int			test_all_dr(t_player *ply, int *coor, t_pos *piece);
+void		init_var_ul(int *i, int *j, int **coor);
+void		init_var_ur(int *i, int *j, int **coor, t_player *ply);
+void		init_var_dl(int *i, int *j, int **coor, t_player *ply);
+void		init_var_dr(int *i, int *j, int **coor, t_player *ply);
+int			get_next_coor_ul(t_player *ply, int **coor);
+int			get_next_coor_dl(t_player *ply, int **coor);
+int			get_next_coor_dr(t_player *ply, int **coor);
+int			get_next_coor_ur(t_player *ply, int **coor);
+int			def_strat(t_player *ply);
 
 void		print_visu(t_player *player);
 void 		clearScreen(void);

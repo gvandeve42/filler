@@ -12,14 +12,11 @@
 
 #include "filler.h"
 
-int		is_avaible(t_player *ply, int *coor, t_pos *piece, int *add)
+static int	srch_for_piece(t_player *ply, int *coor, t_pos *piece, int *add)
 {
 	int	t_1;
 	int	t_2;
-	t_pos	*tmp;
 
-	tmp = piece;
-	ply->nb_prt = 0;
 	while (piece != NULL)
 		{
 			t_1 = coor[0] + piece->pos[0] - add[0];
@@ -40,34 +37,18 @@ int		is_avaible(t_player *ply, int *coor, t_pos *piece, int *add)
 				return (0);
 			piece = piece->next;
 		}
-	piece = tmp;
-	if (ply->nb_prt == 1)
-		return (1);
-	else
-		return (0);
+	return (1);
 }
 
-static int		get_next_coor(t_player *ply, int **coor)
+int		is_avaible(t_player *ply, int *coor, t_pos *piece, int *add)
 {
-	int			i;
-	int			j;
-
-	i = (*coor)[0];
-	j = (*coor)[1];
-	while (i < ply->iplateau[0])
+	ply->nb_prt = 0;
+	if (srch_for_piece(ply, coor, piece, add))
 		{
-			while (j < ply->iplateau[1])
-				{
-					if (ply->plateau[i][j] == 'a')
-						{
-							(*coor)[0] = i;
-							(*coor)[1] = j;
-							return (1);
-						}
-					j++;
-				}
-			j = 0;
-			i++;
+			if (ply->nb_prt == 1)
+				return (1);
+			else
+				return (0);
 		}
 	return (0);
 }
@@ -79,19 +60,12 @@ static int		analyse_plc(t_player *ply, t_pos *piece)
 	coor = (int*)ft_memalloc(2 * sizeof(int));
 	coor[0] = 0;
 	coor[1] = 0;
-	while (get_next_coor(ply, &coor))
+	while (ply->g_strat(ply, &coor))
 		{
-			if (test_all_dr(ply, coor, piece))
+			if (ply->p_strat(ply, coor, piece))
 				{
 					free(coor);
 					return (1);
-				}
-			if (coor[1] + 1 < (ply->iplateau[1]))
-				coor[1]++;
-			else
-				{
-					coor[0]++;
-					coor[1] = 0;
 				}
 		}
 	free(coor);
@@ -120,9 +94,11 @@ static t_pos	*model_piece(t_player *ply, t_pos *pic)
 }
 void			calc_player_response(t_player *player)
 {
-	t_pos *piece;
+	t_pos			*piece;
+	static int		start;
 
 	piece = NULL;
+	start = (start == 0) ? def_strat(player) : 1;
 	filter_ply(player);
 	piece = model_piece(player, piece);
 	if (!analyse_plc(player, piece))
