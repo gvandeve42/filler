@@ -30,7 +30,7 @@ static void grep_coor(int i, int j, int *coor)
 	coor[1] = j;
 }
 
-int		def_strat(t_player *ply)
+int		def_strat(t_player *ply, char pc, char ec)
 {
 	int		i;
 	int		j;
@@ -43,9 +43,9 @@ int		def_strat(t_player *ply)
 		{
 			while (j < ply->iplateau[1])
 				{
-					if (ply->plateau[i][j] == ply->symb[0])
+					if (ply->plateau[i][j] == pc)
 						grep_coor(i, j, coor_j);
-					if (ply->plateau[i][j] == ply->esymb[0])
+					if (ply->plateau[i][j] == ec)
 						grep_coor(i, j, coor_e);
 					j++;
 				}

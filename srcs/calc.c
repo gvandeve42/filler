@@ -98,7 +98,10 @@ void			calc_player_response(t_player *player)
 	static int		start;
 
 	piece = NULL;
-	start = (start == 0) ? def_strat(player) : 1;
+	if (start == 0)
+		start = def_strat(player, player->symb[0], player->esymb[0]);
+	else
+		def_strat(player, player->symb[1], player->esymb[1]);
 	filter_ply(player);
 	piece = model_piece(player, piece);
 	if (!analyse_plc(player, piece))

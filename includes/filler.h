@@ -77,7 +77,7 @@ int			get_next_coor_ul(t_player *ply, int **coor);
 int			get_next_coor_dl(t_player *ply, int **coor);
 int			get_next_coor_dr(t_player *ply, int **coor);
 int			get_next_coor_ur(t_player *ply, int **coor);
-int			def_strat(t_player *ply);
+int			def_strat(t_player *ply, char pc, char ec);
 
 void		print_visu(t_player *player);
 void 		clearScreen(void);

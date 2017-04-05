@@ -40,4 +40,4 @@ re: fclean all
 
 test: re
 	cp gvandeve.filler ../resources/players
-	../resources/filler_vm -f ../resources/maps/map02 -p1 ../resources/players/gvandeve.filler -p2 ../resources/players/gvandeve.filler
+	../resources/filler_vm -f ../resources/maps/map02 -p1 ../resources/players/gvandeve.filler -p2 ../resources/players/gvandeve.filler | ./srcs/visualisator/a.out

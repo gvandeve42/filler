@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gcc -Wall -Wextra -Werror -lncurses visualisateur.c ~/work/filler/srcs/utils.c ~/work/filler/srcs/scrap.c ~/work/filler/srcs/init.c ~/work/filler/libftprintf/libft/get_next_line.c ~/work/libprintf/libftprintf.a ./affichage.c -I ~/work/filler/includes
