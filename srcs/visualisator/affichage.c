@@ -1,21 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   affichage.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gvandeve <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 16:26:46 by gvandeve          #+#    #+#             */
+/*   Updated: 2017/04/06 16:27:13 by gvandeve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 #include <ncurses.h>
 
 static void	print_colored_line(char *line)
 {
 	while (*line != '\0')
-		{
-			if (*line == '.')
-				attron(COLOR_PAIR(5));
-			if (*line == 'O' || *line == 'o')
-				attron(COLOR_PAIR(2));
-			if (*line == 'X' || *line == 'x')
-				attron(COLOR_PAIR(3));
-			if (*line == '*')
-				attron(COLOR_PAIR(4));
-			printw("%c", *line);
-			line++;
-		}
+	{
+		if (*line == '.')
+			attron(COLOR_PAIR(5));
+		if (*line == 'O' || *line == 'o')
+			attron(COLOR_PAIR(2));
+		if (*line == 'X' || *line == 'x')
+			attron(COLOR_PAIR(3));
+		if (*line == '*')
+			attron(COLOR_PAIR(4));
+		printw("%c%c", *line, *line);
+		line++;
+	}
 	attron(COLOR_PAIR(1));
 }
 
@@ -47,11 +59,11 @@ static void	print_htab(int len)
 	i = 0;
 	printw("%6s", "");
 	while (i < len)
-		(i > 9) ? printw("%d", (i++ % 9)) : printw("%d", i++);
+		(i > 9) ? printw("%d ", (i++ % 9)) : printw("%d ", i++);
 	printw("\n");
 }
 
-void	print_visu(t_player *player)
+void		print_visu(t_player *player)
 {
 	clear();
 	print_intro(player);
@@ -62,5 +74,4 @@ void	print_visu(t_player *player)
 	print_htab(player->ipiece[1]);
 	print_tab_w(player->piece, player->ipiece[0]);
 	refresh();
-	//usleep();
 }

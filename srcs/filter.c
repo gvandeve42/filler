@@ -6,56 +6,16 @@
 /*   By: gvandeve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 16:28:18 by gvandeve          #+#    #+#             */
-/*   Updated: 2017/03/30 19:21:17 by gvandeve         ###   ########.fr       */
+/*   Updated: 2017/04/06 16:16:31 by gvandeve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static int	is_verti_b(int i, int j, char **tab, t_player *ply)
-{
-	int	*info;
-
-	info = ply->iplateau;
-	if (i + 1 < info[0] && tab[i + 1][j] == '.')
-		return (1);
-	return (0);
-}
-
-static int	is_verti_h(int i, int j, char **tab, t_player *ply)
-{
-	int	*info;
-
-	info = ply->iplateau;
-	if (i - 1 >= 0 && tab[i - 1][j] == '.')
-		return (1);
-	return (0);
-}
-
-static int	is_hori_d(int i, int j, char **tab, t_player *ply)
-{
-	int	*info;
-
-	info = ply->iplateau;
-	if (j + 1 < info[1] && tab[i][j + 1] == '.')
-		return (1);
-	return (0);
-}
-
-static int	is_hori_g(int i, int j, char **tab, t_player *ply)
-{
-	int	*info;
-
-	info = ply->iplateau;
-	if (j - 1 >= 0 && tab[i][j - 1] == '.')
-		return (1);
-	return (0);
-}
-
 static int	is_bord(t_player *ply, int i, int j)
 {
-	int	count;
-	char **tab;
+	int		count;
+	char	**tab;
 
 	count = 0;
 	tab = ply->plateau;
@@ -71,10 +31,10 @@ static int	is_bord(t_player *ply, int i, int j)
 
 void		filter_ply(t_player *player)
 {
-	int	i;
-	int	j;
-	char **tab;
-	int	*info;
+	int		i;
+	int		j;
+	char	**tab;
+	int		*info;
 
 	i = 0;
 	j = 0;
@@ -85,7 +45,7 @@ void		filter_ply(t_player *player)
 		while (j < info[1])
 		{
 			if ((tab[i][j] == player->symb[0] ||
-				 tab[i][j] == player->symb[1]) &&
+				tab[i][j] == player->symb[1]) &&
 				is_bord(player, i, j))
 				tab[i][j] = 'a';
 			j++;
