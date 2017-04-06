@@ -62,5 +62,5 @@ void	print_visu(t_player *player)
 	print_htab(player->ipiece[1]);
 	print_tab_w(player->piece, player->ipiece[0]);
 	refresh();
-	usleep(5000);
+	//usleep();
 }

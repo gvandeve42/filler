@@ -16,26 +16,36 @@ static void	new_piece(t_player *player, char *line)
 	print_visu(player);
 }
 
-static void	end_print(t_player *player, char *line)
+static void	end_print(char *line)
 {
-	printw("\n END OF THE GAME\n");
+	printw("%s", line);
 	free(line);
-	free_player(player);
+	if (get_next_line(0, &line) == 0)
+		return ;
+	else
+		end_print(line);
+}
+
+static void	init_colors()
+{
+	init_pair(1, COLOR_WHITE, COLOR_BLACK);
+	init_pair(2, COLOR_BLUE, COLOR_BLUE);
+	init_pair(3, COLOR_RED, COLOR_RED);
+	init_pair(4, COLOR_GREEN, COLOR_GREEN);
+	init_pair(5, COLOR_WHITE, COLOR_WHITE);
 }
 
 int			main(void)
 {
 	char		*line;
 	t_player	*player;
+	int			k;
 
 	player = init_player();
 	initscr();
 	start_color();
-	init_pair(1, COLOR_WHITE, COLOR_BLACK);
-	init_pair(2, COLOR_BLUE, COLOR_BLUE);
-	init_pair(3, COLOR_RED, COLOR_RED);
-	init_pair(4, COLOR_GREEN, COLOR_GREEN);
-	init_pair(5, COLOR_WHITE, COLOR_WHITE);
+	init_colors();
+	keypad(stdscr, TRUE);
 	attron(COLOR_PAIR(1));
 	while (get_next_line(0, &line))
 	{
@@ -46,13 +56,15 @@ int			main(void)
 		if (ft_strncmp(line, "Piece", 5) == 0)
 			new_piece(player, line);
 		if (ft_strncmp(line, "==", 2) == 0)
-		{
-			end_print(player, line);
-			return (0);
-		}
-		free(line);
+			{
+				end_print(line);
+				break;
+			}
 	}
+	free(line);
 	free_player(player);
-	endwin();
+	k = getch();
+	if (k == KEY_UP)
+		endwin();
 	return (0);
 }
