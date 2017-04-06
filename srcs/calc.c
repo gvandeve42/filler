@@ -6,7 +6,7 @@
 /*   By: gvandeve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:12:04 by gvandeve          #+#    #+#             */
-/*   Updated: 2017/04/06 16:08:49 by gvandeve         ###   ########.fr       */
+/*   Updated: 2017/04/06 18:01:02 by gvandeve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,6 @@ void			calc_player_response(t_player *player)
 	piece = NULL;
 	if (start == 0)
 		start = def_strat(player, player->symb[0], player->esymb[0]);
-	else
-		def_strat(player, player->symb[1], player->esymb[1]);
 	filter_ply(player);
 	piece = model_piece(player, piece);
 	if (!analyse_plc(player, piece))

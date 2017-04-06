@@ -6,7 +6,7 @@
 /*   By: gvandeve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 16:27:39 by gvandeve          #+#    #+#             */
-/*   Updated: 2017/04/06 16:28:24 by gvandeve         ###   ########.fr       */
+/*   Updated: 2017/04/06 18:00:19 by gvandeve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,28 @@ static void	new_piece(t_player *player, char *line)
 	usleep(15000);
 }
 
-static void	end_print(char *line)
+static void	end_print(t_player *player, char *line)
 {
-	printw("\nEND\n", line);
+	print_visu(player);
+	printw("\n%s\n", line);
+	free(line);
+	while (get_next_line(0, &line))
+	{
+		printw("%s\n", line);
+		free(line);
+	}
+	refresh();
 }
 
 static void	init_colors(void)
 {
+	start_color();
 	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 	init_pair(2, COLOR_BLUE, COLOR_BLUE);
 	init_pair(3, COLOR_RED, COLOR_RED);
 	init_pair(4, COLOR_GREEN, COLOR_GREEN);
 	init_pair(5, COLOR_WHITE, COLOR_WHITE);
+	attron(COLOR_PAIR(1));
 }
 
 int			main(void)
@@ -50,9 +60,7 @@ int			main(void)
 
 	initscr();
 	player = init_player();
-	start_color();
 	init_colors();
-	attron(COLOR_PAIR(1));
 	while (get_next_line(0, &line))
 	{
 		if (ft_strncmp(line, "$$$", 3) == 0)
@@ -62,11 +70,14 @@ int			main(void)
 		if (ft_strncmp(line, "Piece", 5) == 0)
 			new_piece(player, line);
 		if (ft_strncmp(line, "==", 2) == 0)
-			end_print(line);
+		{
+			end_print(player, line);
+			break ;
+		}
 		free(line);
 	}
 	free_player(player);
-	sleep(1);
+	sleep(10);
 	endwin();
 	return (0);
 }
