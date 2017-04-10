@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-static int		srch_for_piece(t_player *ply, int *coor, t_pos *piece, int *add)
+int				srch_for_piece(t_player *ply, int *coor, t_pos *piece, int *add)
 {
 	int	t_1;
 	int	t_2;
@@ -24,7 +24,7 @@ static int		srch_for_piece(t_player *ply, int *coor, t_pos *piece, int *add)
 		if (t_1 < ply->iplateau[0] && t_1 >= 0 &&
 			t_2 < ply->iplateau[1] && t_2 >= 0)
 		{
-			if (ply->plateau[t_1][t_2] == '.' ||
+			if (ply->plateau[t_1][t_2] == 'l' ||
 				ply->plateau[t_1][t_2] == 'a')
 			{
 				if (ply->plateau[t_1][t_2] == 'a')
@@ -47,8 +47,6 @@ int				is_avaible(t_player *ply, int *coor, t_pos *piece, int *add)
 	{
 		if (ply->nb_prt == 1)
 			return (1);
-		else
-			return (0);
 	}
 	return (0);
 }
@@ -62,7 +60,27 @@ static int		analyse_plc(t_player *ply, t_pos *piece)
 	coor[1] = 0;
 	while (ply->g_strat(ply, &coor))
 	{
+		if (test_all_a(ply, coor, piece))
+		{
+			free(coor);
+			return (1);
+		}
+	}
+	coor[0] = 0;
+	coor[1] = 0;
+	while (ply->g_strat(ply, &coor))
+	{
 		if (ply->p_strat(ply, coor, piece))
+		{
+			free(coor);
+			return (1);
+		}
+	}
+	coor[0] = 0;
+	coor[1] = 0;
+	while (ply->g_strat(ply, &coor))
+	{
+		if (test_all_end(ply, coor, piece))
 		{
 			free(coor);
 			return (1);
@@ -102,6 +120,7 @@ void			calc_player_response(t_player *player)
 	if (start == 0)
 		start = def_strat(player, player->symb[0], player->esymb[0]);
 	filter_ply(player);
+	filter_pos(player);
 	piece = model_piece(player, piece);
 	if (!analyse_plc(player, piece))
 	{

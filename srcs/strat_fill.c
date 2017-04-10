@@ -12,6 +12,33 @@
 
 #include "filler.h"
 
+int		test_all_end(t_player *ply, int *coor, t_pos *piece)
+{
+	int	*i;
+
+	i = (int*)ft_memalloc(2 * sizeof(int));
+	i[0] = ply->ipiece[0] - 1;
+	i[1] = ply->ipiece[1] - 1;
+	while (i[0] >= 0)
+	{
+		while (i[1] >= 0)
+		{
+			if (is_avaible_2(ply, coor, piece, i))
+			{
+				ply->rsp[0] = (coor[0] - i[0]);
+				ply->rsp[1] = (coor[1] - i[1]);
+				free(i);
+				return (1);
+			}
+			i[1]--;
+		}
+		i[1] = ply->ipiece[1] - 1;
+		i[0]--;
+	}
+	free(i);
+	return (0);
+}
+
 int		test_all_ul(t_player *ply, int *coor, t_pos *piece)
 {
 	int	*i;
