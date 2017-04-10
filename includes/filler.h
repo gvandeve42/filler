@@ -85,6 +85,9 @@ void		test_pos_right(t_player *ply, int i, int j, int *test);
 void		test_pos_left(t_player *ply, int i, int j, int *test);
 int			srch_for_piece(t_player *ply, int *coor, t_pos *piece, int *add);
 int			srch_for_piece_2(t_player *ply, int *coor, t_pos *piece, int *add);
+int			att_strat(t_player *ply, int *coor, t_pos *piece);
+int			nrm_strat(t_player *ply, int *coor, t_pos *piece);
+int			end_strat(t_player *ply, int *coor, t_pos *piece);
 
 void		print_visu(t_player *player);
 void		scrap_start_v(t_player *player, char *line);

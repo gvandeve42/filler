@@ -1,3 +1,5 @@
 #!/bin/bash
 
+make -C ../../libft/ re
 gcc -Wall -Wextra -Werror -lncurses visualisateur.c ~/work/filler/srcs/utils.c ~/work/filler/srcs/scrap.c ~/work/filler/srcs/init.c ~/work/filler/libft/libft/get_next_line.c ~/work/filler/libft/libftprintf.a ./affichage.c -I ~/work/filler/includes
+make -C ../../libft/ fclean

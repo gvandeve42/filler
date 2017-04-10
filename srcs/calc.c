@@ -56,37 +56,14 @@ static int		analyse_plc(t_player *ply, t_pos *piece)
 	int	*coor;
 
 	coor = (int*)ft_memalloc(2 * sizeof(int));
-	coor[0] = 0;
-	coor[1] = 0;
-	while (ply->g_strat(ply, &coor))
-	{
-		if (test_all_a(ply, coor, piece))
-		{
-			free(coor);
-			return (1);
-		}
-	}
-	coor[0] = 0;
-	coor[1] = 0;
-	while (ply->g_strat(ply, &coor))
-	{
-		if (ply->p_strat(ply, coor, piece))
-		{
-			free(coor);
-			return (1);
-		}
-	}
-	coor[0] = 0;
-	coor[1] = 0;
-	while (ply->g_strat(ply, &coor))
-	{
-		if (test_all_end(ply, coor, piece))
-		{
-			free(coor);
-			return (1);
-		}
-	}
-	free(coor);
+	if (att_strat(ply, coor, piece))
+		return (1);
+	else if (nrm_strat(ply, coor, piece))
+		return (1);
+	else if (end_strat(ply, coor, piece))
+		return (1);
+	else
+		free(coor);
 	return (0);
 }
 
