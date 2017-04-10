@@ -2,8 +2,8 @@
 
 int	att_strat(t_player *ply, int *coor, t_pos *piece)
 {
-	coor[0] = 0;
-	coor[1] = 0;
+	coor[0] = -1;
+	coor[1] = -1;
 	while (ply->g_strat(ply, &coor))
 	{
 		if (test_all_a(ply, coor, piece))
@@ -17,8 +17,8 @@ int	att_strat(t_player *ply, int *coor, t_pos *piece)
 
 int	nrm_strat(t_player *ply, int *coor, t_pos *piece)
 {
-	coor[0] = 0;
-	coor[1] = 0;
+	coor[0] = -1;
+	coor[1] = -1;
 	while (ply->g_strat(ply, &coor))
 	{
 		if (ply->p_strat(ply, coor, piece))
@@ -32,8 +32,8 @@ int	nrm_strat(t_player *ply, int *coor, t_pos *piece)
 
 int	end_strat(t_player *ply, int *coor, t_pos *piece)
 {
-	coor[0] = 0;
-	coor[1] = 0;
+	coor[0] = -1;
+	coor[1] = -1;
 	while (ply->g_strat(ply, &coor))
 	{
 		if (test_all_end(ply, coor, piece))

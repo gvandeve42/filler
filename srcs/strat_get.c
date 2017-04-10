@@ -82,6 +82,7 @@ int		get_next_coor_dr(t_player *ply, int **coor)
 				{
 					(*coor)[0] = i;
 					(*coor)[1] = j;
+					i = (i == 0 && j == 0)? -1 : i;
 					return (1);
 				}
 			}

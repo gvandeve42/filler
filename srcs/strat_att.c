@@ -53,7 +53,6 @@ int			test_all_a(t_player *ply, int *coor, t_pos *piece)
 					{
 						ply->rsp[0] = (coor[0] - i[0]);
 						ply->rsp[1] = (coor[1] - i[1]);
-						ft_printf("\n|||ENNEMI FOUND x=%d y=%d|||", ply->rsp[0], ply->rsp[1]);
 						return (1);
 					}
 			}

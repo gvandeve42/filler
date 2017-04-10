@@ -27,6 +27,22 @@ static void	print_rsp(int x, int y)
 	free(nby);
 }
 
+static void	reload_plateau(t_player *player, char *line)
+{
+	free_tab(player->plateau, player->iplateau[0]);
+	free(player->plateau);
+	scrap_tab(player->iplateau, &player->plateau, line);
+}
+
+static void	reload_piece(t_player *player, char *line)
+{
+	free_tab(player->piece, player->ipiece[0]);
+	free(player->piece);
+	scrap_tab(player->ipiece, &player->piece, line);
+	calc_player_response(player);
+	print_rsp(player->rsp[0], player->rsp[1]);
+}
+
 int			main(void)
 {
 	char		*line;
@@ -36,20 +52,16 @@ int			main(void)
 	while (get_next_line(0, &line))
 	{
 		if (ft_strncmp(line, "$$$", 3) == 0)
-			scrap_start(player, line);
+				scrap_start(player, line);
 		if (ft_strncmp(line, "Plateau", 7) == 0)
-			scrap_tab(player->iplateau, &player->plateau, line);
+			reload_plateau(player, line);
 		if (ft_strncmp(line, "Piece", 5) == 0)
-		{
-			scrap_tab(player->ipiece, &player->piece, line);
-			calc_player_response(player);
-			print_rsp(player->rsp[0], player->rsp[1]);
-		}
+			reload_piece(player, line);
 		if (ft_strncmp(line, "==", 2) == 0)
-		{
-			free(line);
-			break ;
-		}
+			{
+				free(line);
+				break ;
+			}
 		free(line);
 	}
 	free_player(player);

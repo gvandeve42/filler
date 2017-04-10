@@ -33,13 +33,6 @@ void	free_tab(char **tab, int len)
 		free(tab[i++]);
 }
 
-void	free_player_v(t_player *player)
-{
-	free(player->name_1);
-	free(player->name_2);
-	free(player);
-}
-
 void	free_player(t_player *player)
 {
 	free_tab(player->plateau, player->iplateau[0]);
