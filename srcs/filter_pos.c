@@ -18,7 +18,7 @@ void	filter_pos_rec(t_player *ply, int i, int j, int *test)
 		ply->plateau[i][j] = 'y';
 }
 
-int			filter_pos(t_player *ply)
+void	filter_pos(t_player *ply)
 {
 	int		i;
 	int		j;

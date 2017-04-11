@@ -6,7 +6,7 @@
 /*   By: gvandeve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 15:25:47 by gvandeve          #+#    #+#             */
-/*   Updated: 2017/04/06 16:36:50 by gvandeve         ###   ########.fr       */
+/*   Updated: 2017/04/11 15:18:48 by gvandeve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int			get_next_coor_dl(t_player *ply, int **coor);
 int			get_next_coor_dr(t_player *ply, int **coor);
 int			get_next_coor_ur(t_player *ply, int **coor);
 int			def_strat(t_player *ply, char pc, char ec);
-int			filter_pos(t_player *ply);
+void		filter_pos(t_player *ply);
 void		filter_pos_rec(t_player *ply, int i, int j, int *test);
 void		test_pos_up(t_player *ply, int i, int j, int *test);
 void		test_pos_down(t_player *ply, int i, int j, int *test);
@@ -93,3 +93,8 @@ void		print_visu(t_player *player);
 void		scrap_start_v(t_player *player, char *line);
 
 #endif
+
+
+
+
+
