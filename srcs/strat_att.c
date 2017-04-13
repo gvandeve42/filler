@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strat_att.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gvandeve <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/13 15:55:46 by gvandeve          #+#    #+#             */
+/*   Updated: 2017/04/13 15:56:07 by gvandeve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 static int	e_is_next(t_player *ply, int i, int j)
@@ -50,11 +62,11 @@ int			test_all_a(t_player *ply, int *coor, t_pos *piece)
 			if (is_avaible(ply, coor, piece, i))
 			{
 				if (is_next_e(ply, coor, piece, i))
-					{
-						ply->rsp[0] = (coor[0] - i[0]);
-						ply->rsp[1] = (coor[1] - i[1]);
-						return (1);
-					}
+				{
+					ply->rsp[0] = (coor[0] - i[0]);
+					ply->rsp[1] = (coor[1] - i[1]);
+					return (1);
+				}
 			}
 			i[1]++;
 		}

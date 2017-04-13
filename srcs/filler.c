@@ -6,7 +6,7 @@
 /*   By: gvandeve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:11:44 by gvandeve          #+#    #+#             */
-/*   Updated: 2017/03/29 18:20:17 by gvandeve         ###   ########.fr       */
+/*   Updated: 2017/04/13 15:52:42 by gvandeve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ int			main(void)
 	while (get_next_line(0, &line))
 	{
 		if (ft_strncmp(line, "$$$", 3) == 0)
-				scrap_start(player, line);
+			scrap_start(player, line);
 		if (ft_strncmp(line, "Plateau", 7) == 0)
 			reload_plateau(player, line);
 		if (ft_strncmp(line, "Piece", 5) == 0)
 			reload_piece(player, line);
 		if (ft_strncmp(line, "==", 2) == 0)
-			{
-				free(line);
-				break ;
-			}
+		{
+			free(line);
+			break ;
+		}
 		free(line);
 	}
 	free_player(player);

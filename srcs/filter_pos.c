@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   filter_pos.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gvandeve <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/13 15:53:11 by gvandeve          #+#    #+#             */
+/*   Updated: 2017/04/13 15:53:14 by gvandeve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 void	filter_pos_rec(t_player *ply, int i, int j, int *test)
@@ -27,18 +39,18 @@ void	filter_pos(t_player *ply)
 	i = 0;
 	j = 0;
 	while (i < ply->iplateau[0])
+	{
+		while (j < ply->iplateau[1])
 		{
-			while (j < ply->iplateau[1])
-				{
-					if (ply->plateau[i][j] == '.')
-						{
-							test[0] = 0;
-							test[1] = 0;
-							filter_pos_rec(ply, i, j, test);
-						}
-					j++;
-				}
-			j = 0;
-			i++;
+			if (ply->plateau[i][j] == '.')
+			{
+				test[0] = 0;
+				test[1] = 0;
+				filter_pos_rec(ply, i, j, test);
+			}
+			j++;
 		}
+		j = 0;
+		i++;
+	}
 }

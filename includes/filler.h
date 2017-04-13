@@ -6,7 +6,7 @@
 /*   By: gvandeve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 15:25:47 by gvandeve          #+#    #+#             */
-/*   Updated: 2017/04/11 15:18:48 by gvandeve         ###   ########.fr       */
+/*   Updated: 2017/04/13 15:57:45 by gvandeve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,3 @@ void		print_visu(t_player *player);
 void		scrap_start_v(t_player *player, char *line);
 
 #endif
-
-
-
-
-
