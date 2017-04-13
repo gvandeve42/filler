@@ -12,6 +12,7 @@
 
 #include "filler.h"
 #include <ncurses.h>
+#include <curses.h>
 
 static void	new_plateau(t_player *player, char *line)
 {
@@ -77,7 +78,7 @@ int			main(void)
 		free(line);
 	}
 	free_player(player);
-	sleep(10);
+	sleep(3);
 	endwin();
 	return (0);
 }
