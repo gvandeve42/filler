@@ -25,6 +25,7 @@ int				srch_for_piece(t_player *ply, int *coor, t_pos *piece, int *add)
 			t_2 < ply->iplateau[1] && t_2 >= 0)
 		{
 			if (ply->plateau[t_1][t_2] == 'l' ||
+				ply->plateau[t_1][t_2] == 'y' ||
 				ply->plateau[t_1][t_2] == 'a')
 			{
 				if (ply->plateau[t_1][t_2] == 'a')
